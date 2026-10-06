@@ -1,0 +1,79 @@
+{
+  "task": "code-eval",
+  "condition": "skills-auto",
+  "role": "eval",
+  "error": "GraphRecursionError: Recursion limit of 60 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+  "timestamp": "2026-10-06T14:09:32.211059+00:00",
+  "skills_sha256": "d59bd0b3e85cb8412b9755b9eb9f3e5a698eb251a6263007b184ab47824e2248",
+  "seconds": 99.2,
+  "tokens": {
+    "input": 184606,
+    "output": 2536,
+    "total": 187142
+  },
+  "tool_calls": 44,
+  "subagent_calls": 0,
+  "skills_read": 0,
+  "skills_modified": false,
+  "final_message": "============================= test session starts ==============================\nplatform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.6.0\nrootdir: /tmp/lab-wo90z8si\nplugins: langsmith-0.14.4, anyio-4.15.1\ncollected 3 items\n\nworkspace/tests/test_bookings.py ...                                     [100%]\n\n============================== 3 passed in 0.03s ===============================\n\n[Command succeeded with exit code 0]",
+  "score": 0.18181818181818182,
+  "passed": 2,
+  "total": 11,
+  "checks": [
+    {
+      "name": "visible_suite_passes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tests_not_modified",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "parse_duration_all_formats",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "other_caller_fixed",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "billable_blocks_round_up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "add_slot_no_shared_state",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "negative_minutes_rejected",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "rule_type_hints",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "rule_regression_tests",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "rule_changelog",
+      "passed": false,
+      "detail": ""
+    },
+    {
+      "name": "rule_version_bump",
+      "passed": false,
+      "detail": ""
+    }
+  ]
+}

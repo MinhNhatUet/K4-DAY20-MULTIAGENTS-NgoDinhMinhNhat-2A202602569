@@ -132,7 +132,7 @@ Lượt có `error`:
 
 ## 10. Kết luận
 
-Harness hoạt động đúng (29/29 test, `verify_freeze` OK) và quy trình học → curator → đóng băng → đánh giá đã được thực hiện đầy đủ với gpt-4o-mini. Không điều kiện nào cải thiện đáng tin cậy so với baseline: chênh lệch điểm (0,03–0,14) nằm trong biên độ nhiễu đo được (tới 0,25 mỗi tác vụ), check quy ước gần như luôn trượt (1/63), và skill tự sinh không được đọc lần nào (0/6), nên điểm 0,24 của skills-auto ở tác vụ đánh giá không thể quy cho skill. Đa tác tử tốn chi phí lớn nhất (928k token/lượt trung bình) vì vòng lặp trong subagent không bị giới hạn. Đề xuất tiếp theo: giới hạn số bước cho subagent và lặp lại thí nghiệm với một mô hình gọi công cụ ổn định hơn (ví dụ gpt-4.1-mini), chạy mỗi điều kiện ≥ 3 lần để tách hiệu ứng khỏi nhiễu.
+Harness hoạt động đúng (29/29 test, `verify_freeze` OK) và quy trình học → curator → đóng băng → đánh giá đã được thực hiện đầy đủ với gpt-4o-mini. Không điều kiện nào cải thiện đáng tin cậy so với baseline: chênh lệch điểm (0,03–0,14) nằm trong biên độ nhiễu đo được (tới 0,25 mỗi tác vụ), check quy ước gần như luôn trượt (1/63), và skill tự sinh không được đọc lần nào (0/6), nên điểm 0,24 của skills-auto ở tác vụ đánh giá không thể quy cho skill. Bonus 6e bổ sung hai lần lặp cho từng điều kiện; các lần lặp tái hiện dao động điểm và lỗi recursion (xem [bonus-6e.md](bonus-6e.md)), củng cố kết luận rằng một lượt chính không đủ để quy hiệu quả cho một điều kiện. Đa tác tử tốn chi phí lớn nhất trong quy trình chính (928k token/lượt trung bình), chủ yếu do một vòng lặp trong subagent. Bước tiếp theo là giới hạn số bước của subagent và chạy thêm lần lặp bằng một mô hình gọi công cụ ổn định hơn.
 
 ## Phụ lục
 
@@ -161,4 +161,5 @@ python scripts/check_breakdown.py
 Ghi chú:
 - `verify_freeze.py` phải chạy trên Linux vì `hash_skills` băm đường dẫn theo dấu phân cách của hệ điều hành. Image `lab-deepagents` không có git; dùng image phái sinh có cài git và đặt `core.autocrlf=true` như kho trên Windows. Nếu đặt `false`, git báo `skills/auto/README.md` khác tag chỉ vì ký tự xuống dòng (CRLF/LF), nội dung giống hệt.
 - Thư mục kết quả phụ: `results/baseline-v0-no-trace/` (baseline đầu, mất vết), `results/skills-auto-dev/` (Phần 3.4), `results/infrastructure-429/`, `results/infrastructure-gpt-6-luna/` (lỗi hạ tầng). Skill của curator lần 1: `report/curator-run1/`.
-- Không làm thử thách mở rộng.
+- Bonus 6e: hai lần lặp trên cả ba tác vụ đánh giá cho mỗi điều kiện; kết quả ở `results/bonus-6e-run2/` và `results/bonus-6e-run3/`, bảng và phân tích ở [bonus-6e.md](bonus-6e.md), lệnh sinh lại bảng ở `report/bonus_6e_summary.py`.
+- Đã làm thử thách mở rộng 6e.

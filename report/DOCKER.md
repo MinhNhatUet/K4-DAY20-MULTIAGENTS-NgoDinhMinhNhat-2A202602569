@@ -26,4 +26,14 @@ docker run --rm --mount "type=bind,source=$($PWD.Path),target=/lab" lab-deepagen
 docker run --rm --mount "type=bind,source=$($PWD.Path),target=/lab" lab-deepagents python scripts/check_breakdown.py
 ```
 
+Bonus 6e đã chạy thêm hai lượt cho mỗi điều kiện trên ba tác vụ đánh giá, ghi vào hai thư mục riêng. Có thể lặp lại bằng:
+
+```powershell
+docker run --rm --env-file .env --mount "type=bind,source=$($PWD.Path),target=/lab" lab-deepagents python -m lab.runner --condition baseline --tasks eval --results results/bonus-6e-run2
+docker run --rm --env-file .env --mount "type=bind,source=$($PWD.Path),target=/lab" lab-deepagents python -m lab.runner --condition subagents --tasks eval --results results/bonus-6e-run2
+docker run --rm --env-file .env --mount "type=bind,source=$($PWD.Path),target=/lab" lab-deepagents python -m lab.runner --condition skills-auto --tasks eval --results results/bonus-6e-run2
+```
+
+Đổi `run2` thành `run3` cho lượt lặp thứ hai. Sinh lại bảng thống kê bằng `python report/bonus_6e_summary.py` trên máy chủ sau khi đã có cả hai thư mục.
+
 Thực hiện các lệnh git commit/tag ở máy chủ. Việc kiểm tra hash freeze phải dùng cùng hệ điều hành Linux với các lượt chạy, vì hàm hash có sẵn sử dụng dấu phân cách đường dẫn của hệ điều hành. Image gốc chưa có git; cần cài git trong container dùng để chạy `scripts/verify_freeze.py`.
